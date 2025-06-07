@@ -21,6 +21,6 @@ The script preprocesses the data, trains the models, and displays results in a t
   - seaborn
 
 ## Clone the Repository:
-   '''bash
-   git clone https://github.com/your-username/customer-churn-prediction.git
+   '''bash \n
+   git clone https://github.com/your-username/customer-churn-prediction.git \n
    cd customer-churn-prediction
