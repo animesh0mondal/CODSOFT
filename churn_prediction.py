@@ -42,8 +42,9 @@ models = {
 
 # Store results
 results = {}
+confusion_matrices = {}
 
-# Train, evaluate, and plot for each model
+# Train and evaluate each model
 for name, model in models.items():
     # Create pipeline
     pipeline = Pipeline([
@@ -64,21 +65,32 @@ for name, model in models.items():
     # Store results
     results[name] = {'Accuracy': accuracy, 'F1 Score': f1}
     
+    # Store confusion matrix
+    confusion_matrices[name] = confusion_matrix(y_test, y_pred)
+    
     # Print results
     print(f"\nResults for {name}:")
     print(f"Accuracy: {accuracy:.2f}")
     print(f"F1 Score: {f1:.2f}")
-    
-    # Create and plot confusion matrix
-    cm = confusion_matrix(y_test, y_pred)
-    plt.figure(figsize=(6, 4))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
-    plt.title(f'Confusion Matrix for {name}')
-    plt.xlabel('Predicted')
-    plt.ylabel('Actual')
-    plt.xticks([0.5, 1.5], ['Not Churned (0)', 'Churned (1)'])
-    plt.yticks([0.5, 1.5], ['Not Churned (0)', 'Churned (1)'])
-    plt.show()
+
+# Create a figure with three subplots side by side
+fig, axes = plt.subplots(1, 3, figsize=(15, 5))
+fig.suptitle('Confusion Matrices for Churn Prediction Models', fontsize=16)
+
+# Plot confusion matrix for each model
+for idx, (name, cm) in enumerate(confusion_matrices.items()):
+    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False, ax=axes[idx])
+    axes[idx].set_title(name)
+    axes[idx].set_xlabel('Predicted')
+    axes[idx].set_ylabel('Actual')
+    axes[idx].set_xticks([0.5, 1.5])
+    axes[idx].set_xticklabels(['Not Churned (0)', 'Churned (1)'])
+    axes[idx].set_yticks([0.5, 1.5])
+    axes[idx].set_yticklabels(['Not Churned (0)', 'Churned (1)'])
+
+# Adjust layout to prevent overlap
+plt.tight_layout(rect=[0, 0, 1, 0.95])
+plt.show()
 
 # Show results in a table
 results_df = pd.DataFrame(results).T
