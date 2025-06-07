@@ -15,10 +15,10 @@ The script preprocesses the data, trains the models, and displays results in a t
 ## Requirements
 - Python 3.6 or higher
 - Libraries:
-  - 'pandas'
-  - 'scikit-learn'
-  - 'matplotlib'
-  - 'seaborn'
+  - pandas
+  - scikit-learn
+  - matplotlib
+  - seaborn
 
 ## Clone the Repository:
    '''bash
