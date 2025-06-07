@@ -11,7 +11,7 @@ The script preprocesses the data, trains the models, and displays results in a t
 - Models: Logistic Regression, Random Forest, Gradient Boosting.
 - Metrics: Accuracy and F1-score.
 - Visualization: Three confusion matrices displayed side by side.
-- 
+- Dataset: 'Churn_Modelling.csv'
 ## Requirements
 - Python 3.6 or higher
 - Libraries:
